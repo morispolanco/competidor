@@ -17,7 +17,7 @@ def assistant():
 
     openai.api_key = openai_api_key
 
-    prompt = "Analizar el sitio web de mi competidor, observando sus productos o servicios, ventajas y beneficios. Con base en su análisis, sugiera estrategias y acciones para superar a mi competencia. Considere factores como el diseño del sitio web, la usabilidad, la calidad del producto / servicio, los precios, las ofertas especiales, el servicio al cliente y otros factores relevantes. Proporcionar una respuesta detallada con recomendaciones prácticas y viables para mejorar mi posición competitiva. Tómese su tiempo. "
+    prompt = "Analizar el sitio web de mi competidor (URL proporcionada), observando sus productos o servicios, ventajas y beneficios. Con base en su análisis, sugiera estrategias y acciones para superar a mi competencia. Considere factores como el diseño del sitio web, la usabilidad, la calidad del producto / servicio, los precios, las ofertas especiales, el servicio al cliente y otros factores relevantes. Proporcionar una respuesta detallada con recomendaciones prácticas y viables para mejorar mi posición competitiva. Tómese su tiempo. "
   
     if prompt:
         st.session_state.messages.append({"role": "assistant", "content": prompt})
@@ -31,7 +31,7 @@ def assistant():
         st.session_state.messages.append(msg)
         st.chat_message("assistant").write(msg.content)
 
-    if st.button("Generate Optimized Prompt"):
+    if st.button("Generar informe"):
         optimized_prompt = generate_optimized_prompt(prompt)
         st.session_state.messages.append({"role": "assistant", "content": optimized_prompt})
         response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
